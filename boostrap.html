@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="apiApp" >
+<head>
+  <title>Futbol</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="style.css" rel="stylesheet"></link>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    } 
+  }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar"
+      <ul class="nav navbar-nav navbar-right">
+      /*<li><a href="#"><span class=""></span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="oldtrafford.jpg" alt="Image">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="5952804191_b200ac94e6_b.jpg" alt="Image" width="400" height="300">
+        <div class="carousel-caption">
+          <h3></h3>
+          <p></p>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<div id="seccion1" class="container-fluid">
+  <div class="container">
+    <div ng-controller="apiAppCtrl as vm">
+      <h1>Resultados</h1>
+      <p>Seleccionar:
+        <select ng-model="vm.url" ng-change="vm.buscaEnRegion()">
+          <option value="http://api.football-api.com/2.0/standings/1005?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76">UEFA Champions Ligue</option>
+          <option value="http://api.football-api.com/2.0/standings/1007?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76">UEFA Europe Ligue</option>
+          <option value="http://api.football-api.com/2.0/standings/1269?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76">Serie A Italia</option>
+          <option value="http://api.football-api.com/2.0/standings/1399?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76">Primera Division España</option>
+        </select>
+      </p>
+      
+      <div id="datos" class="container" ng-repeat="pais in vm.paises" x>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <h3></h3>
+        </div>
+        <div id="contenido" class="col-xs-12 col-sm-12 col-md-4 col-lg4">
+          <span id="titulo">EQUIPO:</span>         <span id="cont">{{pais.team_name}}</span><br> 
+          <span id="titulo">Partidos Ganados:</span>    <span id="cont">{{pais.wins}}</span><br> 
+          <span id="titulo">Partidos Empadados:</span>  <span id="cont">{{pais.draws}}</span><br> 
+          <span id="titulo">Partidos Perdidos:</span>   <span id="cont">{{pais.losses}}</span><br>
+          <span id="titulo">Partidos Jugados:</span>    <span id="cont">{{pais.games_played}}</span><br> 
+          <span id="titulo">Puntos:</span>        <span id="cont">{{pais.points}}</span><br>
+          <span id="titulo">Goles a Favor:</span>     <span id="cont">{{pais.goals_for}}</span><br>
+          <span id="titulo">Goles en Contra:</span>     <span id="cont">{{pais.goals_against}}</span><br>
+          <span id="titulo">Diferencia:</span>      <span id="cont">{{pais.goal_differential}}</span><br><br>
+        </div>        
+      </div>
+    </div>
+  </div>
+  </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
